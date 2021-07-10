@@ -6,9 +6,11 @@ import {
   Image,
   TextInput,
   TouchableOpacity,
+  ToastAndroid
 } from "react-native";
 import { Header } from "react-native-elements";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { KeyboardAvoidingView } from "react-native";
 import db from "../config";
 
 export default class WriteStoryScreen extends React.Component {
@@ -27,11 +29,15 @@ export default class WriteStoryScreen extends React.Component {
       story: this.state.story,
       title: this.state.title,
     });
+   var transactionMessage = "Book Issued"
+    ToastAndroid.show(transactionMessage,ToastAndroid.SHORT)
   };
 
   render() {
     return (
-      <SafeAreaProvider style={{ backgroundColor: "black" }}>
+      
+      < KeyboardAvoidingView style={{ backgroundColor: "black" }}>
+        <SafeAreaProvider>
         <Header
           backgroundColor={"red"}
           centerComponent={{
@@ -39,7 +45,7 @@ export default class WriteStoryScreen extends React.Component {
             style: styles.headText,
           }}
         />
-
+</SafeAreaProvider>
         <TextInput
           placeholder="Story Title"
           style={[styles.inputStyle, { marginTop: 20 }]}
@@ -63,7 +69,7 @@ export default class WriteStoryScreen extends React.Component {
         <TextInput
           placeholder="Write your story"
           multiline="true"
-          style={[styles.inputStyle, { marginTop: 10, height: 350 }]}
+          style={[styles.inputStyle, { marginTop: 10, height:250 }]}
           onChangeText={(text) => {
             this.setState({
               story: text,
@@ -74,7 +80,7 @@ export default class WriteStoryScreen extends React.Component {
         <TouchableOpacity style={styles.button} onPress={this.submitStory}>
           <Text style={styles.buttonText}>Submit</Text>
         </TouchableOpacity>
-      </SafeAreaProvider>
+      </KeyboardAvoidingView>
     );
   }
 }
