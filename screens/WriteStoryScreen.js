@@ -6,7 +6,7 @@ import {
   Image,
   TextInput,
   TouchableOpacity,
-  ToastAndroid
+  ToastAndroid,
 } from "react-native";
 import { Header } from "react-native-elements";
 import { SafeAreaProvider } from "react-native-safe-area-context";
@@ -29,30 +29,29 @@ export default class WriteStoryScreen extends React.Component {
       story: this.state.story,
       title: this.state.title,
     });
-   var transactionMessage = "Book Issued"
-    ToastAndroid.show(transactionMessage,ToastAndroid.SHORT)
+    var transactionMessage = "Book Issued";
+    ToastAndroid.show(transactionMessage, ToastAndroid.SHORT);
   };
 
   render() {
     return (
-      
-      < KeyboardAvoidingView style={{ backgroundColor: "black" }}>
+      <KeyboardAvoidingView style={{ backgroundColor: "black" }}>
         <SafeAreaProvider>
-        <Header
-          backgroundColor={"red"}
-          centerComponent={{
-            text: "Story Hub",
-            style: styles.headText,
-          }}
-        />
-</SafeAreaProvider>
+          <Header
+            backgroundColor={"#C8A2C8"}
+            centerComponent={{
+              text: "Story Hub",
+              style: styles.headText,
+            }}
+          />
+        </SafeAreaProvider>
         <TextInput
           placeholder="Story Title"
           style={[styles.inputStyle, { marginTop: 20 }]}
           onChangeText={(text) => {
             this.setState({
-              title: text,
-            })
+              title: text.toUpperCase(),
+            });
           }}
         ></TextInput>
 
@@ -62,14 +61,14 @@ export default class WriteStoryScreen extends React.Component {
           onChangeText={(text) => {
             this.setState({
               author: text,
-            })
+            });
           }}
         ></TextInput>
 
         <TextInput
           placeholder="Write your story"
           multiline="true"
-          style={[styles.inputStyle, { marginTop: 10, height:250 }]}
+          style={[styles.inputStyle, { marginTop: 10, height: 250 }]}
           onChangeText={(text) => {
             this.setState({
               story: text,
@@ -89,7 +88,7 @@ const styles = StyleSheet.create({
     width: "90%",
     height: 50,
     borderWidth: 2,
-    borderColor: "red",
+    borderColor: "#C8A2C8",
     borderRadius: 10,
     alignSelf: "center",
     textAlign: "center",
@@ -103,13 +102,13 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     alignSelf: "center",
     marginTop: 20,
-    borderColor: "red",
+    borderColor: "#C8A2C8",
     marginBottom: 10,
   },
   buttonText: {
     alignSelf: "center",
     marginTop: 5,
-    color: "red",
+    color: "white",
     fontSize: "150%",
   },
   headText: {
