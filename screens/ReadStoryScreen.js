@@ -53,6 +53,8 @@ export default class ReadStoryScreen extends React.Component {
     });
   }
 
+  fetchMoreTransactions = async ()=>{}
+
   render() {
     return (
       <View style={styles.container}>
@@ -73,11 +75,44 @@ export default class ReadStoryScreen extends React.Component {
             value={this.state.search}
           />
         </View>
-
-        <ScrollView>
-          <View>
-            {this.state.search === ""
-              ? this.state.allStories.map((item) => (
+        {this.state.search === ""
+          ? this.state.allStories.map((item) => (
+              <View>
+                <FlatList
+                  data={this.state.allStories}
+                  renderItem={({ item }) => (
+                    <View
+                      style={{
+                        //  borderColor: "pink",
+                        // borderWidth: 2,
+                        padding: 10,
+                        marginBottom: 10,
+                        alignSelf: "center",
+                        width: 400,
+                        backgroundColor: "grey",
+                      }}
+                    >
+                      <Text
+                        style={[
+                          styles.readText,
+                          { fontSize: 25, color: "blue" },
+                        ]}
+                      >
+                        {item.title}
+                      </Text>
+                      <Text style={styles.readText}>{"By " + item.author}</Text>
+                    </View>
+                  )}
+                  keyExtractor={(item, index) => index.toString()}
+                  onEndReached={this.fetchMoreTransactions}
+                  onEndReachedThreshold={0.7}
+                />
+              </View>
+            ))
+          : this.state.dataSource.map((item) => (
+              <FlatList
+                data={this.state.dataSource}
+                renderItem={({ item }) => (
                   <View
                     style={{
                       //  borderColor: "pink",
@@ -94,29 +129,14 @@ export default class ReadStoryScreen extends React.Component {
                     >
                       {item.title}
                     </Text>
-                    <Text style={styles.readText}>By {item.author}</Text>
+                    <Text style={styles.readText}>{"By " + item.author}</Text>
                   </View>
-                ))
-              : this.state.dataSource.map((item) => (
-                  <View
-                    style={{
-                      padding: 10,
-                      marginBottom: 10,
-                      alignSelf: "center",
-                      width: 400,
-                      backgroundColor: "grey",
-                    }}
-                  >
-                    <Text
-                      style={[styles.readText, { fontSize: 25, color: "blue" }]}
-                    >
-                      {item.title}
-                    </Text>
-                    <Text style={styles.readText}>By {item.author}</Text>
-                  </View>
-                ))}
-          </View>
-        </ScrollView>
+                )}
+                keyExtractor={(item, index) => index.toString()}
+                onEndReached={this.fetchMoreTransactions}
+                onEndReachedThreshold={0.7}
+              />
+            ))}
       </View>
     );
   }
