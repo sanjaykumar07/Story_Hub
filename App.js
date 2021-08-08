@@ -51,7 +51,7 @@ const switchNavigator = createSwitchNavigator({
   TabNavigator: {screen: TabNavigator},
 })
 
-const AppContainer = createAppContainer(TabNavigator);
+const AppContainer = createAppContainer(switchNavigator);
 const styles = StyleSheet.create({
   container: {
     flex: 1,
