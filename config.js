@@ -6,8 +6,9 @@ var firebaseConfig = {
   projectId: "story-hub-732c3",
   storageBucket: "story-hub-732c3.appspot.com",
   messagingSenderId: "1075971198373",
-  appId: "1:1075971198373:web:9c1dd753baf236da9fec4c",
+  appId: "1:1075971198373:web:9c1dd753baf236da9fec4c"
 };
+// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
 export default firebase.firestore();

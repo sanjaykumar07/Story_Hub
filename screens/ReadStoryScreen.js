@@ -53,7 +53,7 @@ export default class ReadStoryScreen extends React.Component {
     });
   }
 
-  fetchMoreTransactions = async ()=>{}
+  fetchMoreTransactions = async () => {};
 
   render() {
     return (
